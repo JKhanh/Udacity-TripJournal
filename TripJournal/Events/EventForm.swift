@@ -23,17 +23,18 @@ struct EventForm: View {
     }
 
     init(
-        tripId: Trip.ID,
+        trip: Trip,
         mode: Mode,
         updateHandler: @escaping () -> Void
     ) {
-        self.tripId = tripId
+        self.tripId = trip.id
         self.mode = mode
         self.updateHandler = updateHandler
 
         switch mode {
         case .add:
             title = "Add Event"
+            _date = .init(initialValue: trip.startDate)
 
         case let .edit(event):
             title = "Edit \(event.name)"

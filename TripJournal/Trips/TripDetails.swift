@@ -37,7 +37,7 @@ struct TripDetails: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: toolbar)
             .sheet(item: $eventFormMode) { mode in
-                EventForm(tripId: trip.id, mode: mode) {
+                EventForm(trip: trip, mode: mode) {
                     Task {
                         await reloadTrip()
                     }
