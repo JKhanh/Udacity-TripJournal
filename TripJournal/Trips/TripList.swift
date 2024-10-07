@@ -88,6 +88,11 @@ struct TripList: View {
             },
             actions: {
                 Button("Try Again") {
+                    if let networkError = error as? NetworkError {
+                        if networkError == .unauthorized {
+                            journalService.logOut()
+                        }
+                    }
                     Task {
                         await fetchTrips()
                     }
